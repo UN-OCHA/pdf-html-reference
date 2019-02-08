@@ -1,0 +1,125 @@
+<!DOCTYPE 🖨>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Print CSS Test</title>
+    <style type="text/css">
+      body {
+        font-family: monospace;
+        padding: 2rem;
+      }
+
+      .debug {
+        display: block;
+        margin-bottom: 1em;
+        padding: 2em;
+        background: #ddd;
+      }
+
+      .tests {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 5px;
+      }
+
+      .test {
+        border: 1px solid #222;
+        border-radius: 7px;
+        padding: 1rem;
+        width: 22.5%;
+        height: 200px;
+        background: #ed553b;
+        position: relative;
+      }
+
+      .test code::after {
+        content: none;
+        display: block;
+        padding: .25em .5em;
+        color: white;
+        background: black;
+        position: absolute;
+        bottom: 1rem;
+      }
+
+      .generic {
+        width: 10%;
+      }
+
+      @media print {
+        .test[class^='media-print'],
+        .test[class*=' media-print'] {
+          background: #f6d55c;
+        }
+
+        .test[class^='media-print'] code::after,
+        .test[class*=' media-print'] code::after {
+          content: 'media-print';
+        }
+      }
+
+      @media print and (min-width: 600px) {
+        .test[class^='media-print-min-width'],
+        .test[class*=' media-print-min-width'] {
+          background: #f6d55c;
+        }
+
+        .test[class^='media-print-min-width'] code::after,
+        .test[class*=' media-print-min-width'] code::after {
+          content: 'media-print-min-width';
+        }
+      }
+
+      @media screen {
+        .test[class^='media-screen'],
+        .test[class*=' media-screen'] {
+          background: #9fb;
+        }
+
+        .test[class^='media-screen'] code::after,
+        .test[class*=' media-screen'] code::after {
+          content: 'media-screen';
+        }
+      }
+
+      @media screen and (min-width: 600px) {
+        .test[class^='media-screen-min-width'],
+        .test[class*=' media-screen-min-width'] {
+          background: #6ff;
+        }
+
+        .test[class^='media-screen-min-width'] code::after,
+        .test[class*=' media-screen-min-width'] code::after {
+          content: 'media-screen-min-width';
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Print CSS Test</h1>
+    <p>Use the following table to diagnose the support of various CSS Media in both wkhtmltopdf and Chrome Puppeteer</p>
+    <div class="debug">
+      <code>window.innerWidth = <script>document.write(window.innerWidth);</script></code>
+    </div>
+
+    <table class="tests">
+      <tr>
+        <td class="test generic">
+          <code>.test</code>
+        </td>
+        <td class="test media-print">
+          <code>@media print</code>
+        </td>
+        <td class="test media-print-min-width">
+          <code>@media print and (min-width 600px)</code>
+        </td>
+        <td class="test media-screen">
+          <code>@media screen</code>
+        </td>
+        <td class="test media-screen-min-width">
+          <code>@media screen and (min-width 600px)</code>
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>
