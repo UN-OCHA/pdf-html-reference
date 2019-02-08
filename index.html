@@ -98,7 +98,7 @@
     <h1>Print CSS Test</h1>
     <p>Use the following table to diagnose the support of various CSS Media in both wkhtmltopdf and Chrome Puppeteer</p>
     <div class="debug">
-      <code>window.innerWidth = <script>document.write(window.innerWidth);</script></code>
+      <code>window.innerWidth = <span id="width"></span></code>
     </div>
 
     <table class="tests">
@@ -121,5 +121,14 @@
       </tr>
     </table>
 
+    <script>
+      // Print window width
+      document.querySelector('#width').innerText = window.innerWidth;
+
+      // Update on window resize
+      window.addEventListener('resize', function () {
+        document.querySelector('#width').innerText = window.innerWidth;
+      });
+    </script>
   </body>
 </html>
